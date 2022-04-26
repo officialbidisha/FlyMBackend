@@ -3,7 +3,21 @@ const express = require('express');
 const mongoose = require('mongoose');
 
 const app = express();
-
+const corsOpts = {
+    origin: '*',
+  
+    methods: [
+      'GET',
+      'POST',
+    ],
+  
+    allowedHeaders: [
+      'Content-Type',
+    ],
+  };
+  
+app.use(cors(corsOpts));
+  
 app.use(express.json())
 
 app.listen(process.env.PORT, () => {
