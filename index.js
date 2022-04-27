@@ -32,7 +32,10 @@ mongoose.connect(mongoString);
 const database = mongoose.connection
 
 const routes = require('./routes/routes');
-app.use('/api', routes)
+const flightroutes = require('./routes/flights');
+
+app.use('/api', routes);
+app.use('/flights', flightroutes);
 database.on('error', (error) => {
     console.log(error)
 })
