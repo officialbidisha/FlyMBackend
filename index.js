@@ -22,6 +22,7 @@ app.use(cors(corsOpts));
 app.use(express.json())
 
 app.listen(process.env.PORT, () => {
+  console.log(process.env);
     console.log(`Server Started at ${process.env.PORT}`)
 })
 
