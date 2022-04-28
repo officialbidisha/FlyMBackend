@@ -31,15 +31,9 @@ router.post("/post", async (req, res) => {
 
 
 router.post ('/getFlights', async(req, res) => {
-  // const data = new RequestModel({
-  //   to: req.body.to,
-  //   from: req.body.from,
-  //   date: req.body.date
-  // })
 
   try{
     let response;
-    console.log(req.body.date);
     const flights = await Model.find({
       to: req.body.to,
       from: req.body.from,
