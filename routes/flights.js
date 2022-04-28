@@ -1,6 +1,8 @@
 const express = require("express");
 const Model = require("../models/flightmodel");
 
+const RequestModel = require("../models/requesflightmodel");
+
 const router = express.Router();
 
 module.exports = router;
@@ -26,6 +28,34 @@ router.post("/post", async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 });
+
+
+router.post ('/getFlights', async(req, res) => {
+  // const data = new RequestModel({
+  //   to: req.body.to,
+  //   from: req.body.from,
+  //   date: req.body.date
+  // })
+
+  try{
+    let response;
+    console.log(req.body.date);
+    const flights = await Model.find({
+      to: req.body.to,
+      from: req.body.from,
+      date: req.body.date,
+    });
+    response ={
+      responseData: flights,
+      responseMessage: 'Flights fetched'
+    }
+    return res.send(response);
+  }
+  catch(error){
+    console.log(error);
+    return res.status(500).send();
+  }
+})
 
 //Get all Method
 router.get("/getAll", async (req, res) => {
